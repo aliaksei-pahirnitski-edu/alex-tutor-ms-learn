@@ -1,0 +1,13 @@
+@page "/alex"
+
+<H1>Hallo Alex</H1>
+
+<input type="number" @bind-value="incrementAmount" />
+
+<Counter IncrementAmount=@incrementAmount />
+
+@code{
+    // @bind
+
+    public int incrementAmount { get; set;} = 4;
+}
