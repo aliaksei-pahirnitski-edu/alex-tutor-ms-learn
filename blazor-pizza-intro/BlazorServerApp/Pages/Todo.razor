@@ -1,0 +1,33 @@
+﻿@page "/todos"
+@using BlazorServerApp.Data.Todos
+@* @using BlazorServerApp.Data   @item.IsDone ? "done" : "" *@
+
+<h3>Todos (@items.Count(todo => !todo.IsDone))</h3>
+<ul>
+@foreach(var item in items){
+    <li class=@(item.IsDone ? "done" : "")>
+        @item.Title
+        <input type="checkbox" @bind="item.IsDone" />
+    </li>
+}
+</ul>
+<input placeholder="Please enter todo" @bind="_newItem" />
+<button @onclick="AddTodoItem">Add todo</button>
+
+
+@code {
+    private string _newItem = "";
+
+    private List<TodoItem> items = new (){
+        new TodoItem(){ Title = "Drink coffe", IsDone=true },
+        new (){ Title = "Sleep"},
+        new (){ Title = "Walk 3 km"}
+    };
+
+    private Task AddTodoItem(){
+        items.Add(new (){Title=_newItem});
+        Console.WriteLine($"New Item added: {_newItem}");
+        _newItem = "";
+        return Task.CompletedTask;
+    }
+}
