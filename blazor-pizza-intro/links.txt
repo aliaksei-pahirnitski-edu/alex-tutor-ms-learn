@@ -1,3 +1,14 @@
 https://learn.microsoft.com/ru-ru/aspnet/core/blazor
+https://learn.microsoft.com/ru-ru/aspnet/core/blazor/hosting-models
 
 https://blazor.net/  =>  https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor
+
+Расширение C# для Visual Studio Code
+https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
+https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit
+
+pizza:
+https://github.com/dotnet-presentations/blazor-workshop/
+
+todos
+https://learn.microsoft.com/ru-ru/aspnet/core/blazor/tutorials/build-a-blazor-app?view=aspnetcore-7.0
