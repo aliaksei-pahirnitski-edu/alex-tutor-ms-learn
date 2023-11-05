@@ -1,14 +1,21 @@
 ﻿@page "/"
 @using BlazingPizza
+@using BlazingPizza.Data
+@using BlazingPizza.Services
+
+@inject IPizzaService PizzaSvc
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+@inject OrderState OrderState
 
 <div class="main">
-  <h1>Blazing Pizzas</h1>
+  <h1>Танина любимая пицца</h1>
   <ul class="pizza-cards">
     @if (specials != null)
     {
       @foreach (var special in specials)
       {
-        <li style="background-image: url('@special.ImageUrl')">
+        <li @onclick="@(() => OrderState.ShowConfigurePizzaDialog(special))" style="background-image: url('@special.ImageUrl')">
           <div class="pizza-info">
               <span class="title">@special.Name</span>
                   @special.Description
@@ -20,11 +27,22 @@
   </ul>
 </div>
 
+@if (OrderState.ShowingConfigureDialog)
+{
+    <ConfigurePizzaDialog Pizza="OrderState.ConfiguringPizza" 
+    OnCancel="OrderState.CancelConfigurePizzaDialog"
+    OnConfirm="OrderState.ConfirmConfigurePizzaDialog" />
+}
+
 @code {
+    List<PizzaSpecial> specials = new();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
+    }
 
-List<PizzaSpecial> specials = new();
-
-    protected override void OnInitialized()
+ /* protected override void OnInitialized()
     {
         specials.AddRange(new List<PizzaSpecial>
         {
@@ -35,7 +53,7 @@ List<PizzaSpecial> specials = new();
             new PizzaSpecial { Name = "Basic Cheese Pizza", BasePrice =  11.99M, Description = "It's cheesy and delicious. Why wouldn't you want one?", ImageUrl="img/pizzas/cheese.jpg"},
             new PizzaSpecial { Name = "Classic pepperoni", BasePrice =  10.5M, Description = "It's the pizza you grew up with, but Blazing hot!", ImageUrl="img/pizzas/pepperoni.jpg" }               
         });
-    }
+    }*/
 
     /*
         protected override Task OnInitializedAsync()
