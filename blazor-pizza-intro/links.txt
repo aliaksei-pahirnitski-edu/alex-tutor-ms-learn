@@ -12,3 +12,9 @@ https://github.com/dotnet-presentations/blazor-workshop/
 
 todos
 https://learn.microsoft.com/ru-ru/aspnet/core/blazor/tutorials/build-a-blazor-app?view=aspnetcore-7.0
+
+
+https://github.com/MicrosoftDocs/mslearn-interact-with-data-blazor-web-apps.git
+
+
+https://github.com/dotnet-architecture/eshoponblazor
